@@ -65,16 +65,16 @@
 #    docker_host_info:
 #     containers: yes
 #    register: result
-#  - name: Stop all containers
-#    shell: "docker container stop $(docker container ls -aq)"
-#    when: result.host_info.Containers != 0
-#  - name: Remove all containers
-#    shell: "docker container rm $(docker container ls -aq)"
-#    when: result.host_info.Containers != 0
-#  - name: Remove all images
-#    shell: "docker rmi $(docker images -a -q)"
-#    ignore_errors: yes
-#    when: result.host_info.Containers != 0
+  - name: Stop all containers
+    shell: "docker container stop $(docker container ls -aq)"
+    when: result.host_info.Containers != 0
+  - name: Remove all containers
+    shell: "docker container rm $(docker container ls -aq)"
+    when: result.host_info.Containers != 0
+  - name: Remove all images
+    shell: "docker rmi $(docker images -a -q)"
+    ignore_errors: yes
+    when: result.host_info.Containers != 0
   - name: build docker
     shell: "docker build -t devopser/testcicd:latest /home/"
   - name: run
