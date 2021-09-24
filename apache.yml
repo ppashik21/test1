@@ -61,10 +61,10 @@
       owner: root
       group: root
       mode: '0644'
-#  - name: Get info on docker host and list images
-#    docker_host_info:
-#     containers: yes
-#    register: result
+  - name: Get info on docker host and list images
+    docker_host_info:
+     containers: yes
+    register: result
   - name: Stop all containers
     shell: "docker container stop $(docker container ls -aq)"
     when: result.host_info.Containers != 0
